@@ -1,24 +1,11 @@
-# README
+# Fitbit Tracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails application for tracking your friends' Fitbit steps.
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+With Ruby installed, check out this repository and run:
 
-* System dependencies
+    bin/setup
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This setup script will check your environment and prompt you for settings it needs. As part of the process, you'll need to have an OAuth application registered through https://dev.fitbit.com.
