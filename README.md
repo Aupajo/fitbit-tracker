@@ -1,5 +1,7 @@
 # Fitbit Tracker
 
+[![Build Status](https://travis-ci.org/Aupajo/fitbit-tracker.svg?branch=master)](https://travis-ci.org/Aupajo/fitbit-tracker) [![Code Climate](https://codeclimate.com/github/Aupajo/fitbit-tracker/badges/gpa.svg)](https://codeclimate.com/github/Aupajo/fitbit-tracker)
+
 Rails application for tracking your friends' Fitbit steps.
 
 ## Setup
