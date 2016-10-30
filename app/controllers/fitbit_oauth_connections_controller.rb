@@ -6,27 +6,32 @@ class FitbitOauthConnectionsController < ApplicationController
 
   def confirm
     connection = FitbitOauthConnection.new
-    auth = connection.authorization_response_from(code: params.fetch(:code), host: request.host_with_port)
 
-    if auth.code.to_i != 200
-      fail auth.body
+    auth_request = connection.authorization_request(
+      authorization_code: params.fetch(:code),
+      local_host: request.host_with_port
+    )
+
+    auth_response = auth_request.response
+
+    if auth_response.succeeded?
+      @user_details = JSON.parse(fetch_user_details(auth_response).body, symbolize_names: true).fetch(:user)
+    else
+      @errors = auth_response.errors
+      render :error
     end
-
-    auth_details = JSON.parse(auth.body, symbolize_names: true)
-
-    @user_details = JSON.parse(fetch_user_details(auth_details).body, symbolize_names: true).fetch(:user)
   end
 
   private
 
-  def fetch_user_details(auth_details)
-    uri = Addressable::URI.parse("https://api.fitbit.com/1/user/#{auth_details.fetch(:user_id)}/profile.json")
+  def fetch_user_details(auth)
+    uri = Addressable::URI.parse("https://api.fitbit.com/1/user/#{auth.user_id}/profile.json")
 
     requires_ssl = uri.normalized_scheme == 'https'
 
     Net::HTTP.start(uri.host, uri.port, use_ssl: requires_ssl) do |http|
       request = Net::HTTP::Get.new(uri)
-      request['Authorization'] = "Bearer #{auth_details.fetch(:access_token)}"
+      request['Authorization'] = "Bearer #{auth.access_token}"
 
       http.request(request)
     end
