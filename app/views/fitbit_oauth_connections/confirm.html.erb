@@ -1,6 +1,19 @@
-<h1><%= @user_details[:displayName] %></h1>
+<h1><%= @user_details[:displayName] %> (<%= @user_details[:encodedId] %>)</h1>
 <h2><%= @user_details[:fullName] %></h2>
 <p><%= @user_details[:distanceUnit] %></p>
 <p><%= @user_details[:timezone] %></p>
 <p><%= image_tag @user_details[:avatar] %></p>
 <p><%= image_tag @user_details[:avatar150] %></p>
+
+
+<h2>Friends</h2>
+
+<ul>
+  <% @friends.each do |friend| %>
+    <li>
+      <%= friend[:encodedId] %>
+      <%= friend[:displayName] %>
+      <%= image_tag friend[:avatar] %>
+    </li>
+  <% end %>
+</ul>

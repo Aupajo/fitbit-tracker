@@ -15,7 +15,9 @@ class FitbitOauthConnectionsController < ApplicationController
     auth_response = auth_request.response
 
     if auth_response.succeeded?
-      @user_details = auth_response.authorized_client.profile
+      client = auth_response.authorized_client
+      @user_details = client.profile
+      @friends = client.friends
     else
       @errors = auth_response.errors
       render :error
