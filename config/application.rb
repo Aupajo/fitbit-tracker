@@ -20,10 +20,10 @@ module FitbitTracker
     config.autoload_paths << "#{Rails.root}/lib"
 
     config.fitbit_oauth = {
-      client_id: ENV.fetch('FITBIT_OAUTH_CLIENT_ID'),
-      client_secret: ENV.fetch('FITBIT_OAUTH_CLIENT_SECRET'),
-      authorization_uri: ENV.fetch('FITBIT_OAUTH_AUTHORIZATION_URI'),
-      refresh_token_uri: ENV.fetch('FITBIT_OAUTH_REFRESH_TOKEN_URI'),
+      client_id: ENV['FITBIT_OAUTH_CLIENT_ID'],
+      client_secret: ENV['FITBIT_OAUTH_CLIENT_SECRET'],
+      authorization_uri: ENV['FITBIT_OAUTH_AUTHORIZATION_URI'],
+      refresh_token_uri: ENV['FITBIT_OAUTH_REFRESH_TOKEN_URI'],
       scopes: %w( profile social )
     }
   end
