@@ -26,6 +26,16 @@ module Fitbit
       data.fetch(:errors, [])
     end
 
+    def authorized_client
+      fail "Not authorized" unless succeeded?
+      
+      AuthorizedClient.new(
+        user_id: user_id,
+        access_token: access_token,
+        refresh_token: refresh_token
+      )
+    end
+
     private
 
     def data
