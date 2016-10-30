@@ -14,6 +14,16 @@ module Fitbit
         .fetch(:user)
     end
 
+    def friends
+      friends_leaderboard.map { |entry| entry[:user] }
+    end
+
+    def friends_leaderboard
+      request("https://api.fitbit.com/1/user/#{user_id}/friends/leaderboard.json")
+        .response_data
+        .fetch(:friends)
+    end
+
     def request(uri, **params)
       AuthorizedRequest.new(self, uri, params)
     end
