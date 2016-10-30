@@ -10,7 +10,6 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
-# require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -18,8 +17,14 @@ Bundler.require(*Rails.groups)
 
 module FitbitTracker
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    config.autoload_paths << "#{Rails.root}/lib"
+
+    config.fitbit_oauth = {
+      client_id: ENV.fetch('FITBIT_OAUTH_CLIENT_ID'),
+      client_secret: ENV.fetch('FITBIT_OAUTH_CLIENT_SECRET'),
+      authorization_uri: ENV.fetch('FITBIT_OAUTH_AUTHORIZATION_URI'),
+      refresh_token_uri: ENV.fetch('FITBIT_OAUTH_REFRESH_TOKEN_URI'),
+      scopes: %w( profile social )
+    }
   end
 end

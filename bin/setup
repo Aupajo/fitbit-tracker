@@ -47,7 +47,7 @@ chdir APP_ROOT do
     puts "No .env file exists, creating one...\n"
     puts "==> You need to have an application registered with Fitbit to collect data from it."
     puts "    Set one up at https://dev.fitbit.com/"
-    puts "    Use http://localhost:3000/fitbit/oauth_callback for the callback URL\n\n"
+    puts "    Use http://localhost:3000/fitbit_oauth_connections for the callback URL\n\n"
 
     config = {
       FITBIT_OAUTH_CLIENT_ID: ask_for("FITBIT_OAUTH_CLIENT_ID"),
