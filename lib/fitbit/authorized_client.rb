@@ -9,16 +9,13 @@ module Fitbit
     end
 
     def profile
-      uri = Addressable::URI.parse("https://api.fitbit.com/1/user/#{user_id}/profile.json")
+      request("https://api.fitbit.com/1/user/#{user_id}/profile.json")
+        .response_data
+        .fetch(:user)
+    end
 
-      requires_ssl = uri.normalized_scheme == 'https'
-
-      Net::HTTP.start(uri.host, uri.port, use_ssl: requires_ssl) do |http|
-        request = Net::HTTP::Get.new(uri)
-        request['Authorization'] = "Bearer #{access_token}"
-
-        http.request(request)
-      end
+    def request(uri, **params)
+      AuthorizedRequest.new(self, uri, params)
     end
   end
 end

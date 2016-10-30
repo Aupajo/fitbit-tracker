@@ -15,8 +15,7 @@ class FitbitOauthConnectionsController < ApplicationController
     auth_response = auth_request.response
 
     if auth_response.succeeded?
-      client = auth_response.authorized_client
-      @user_details = JSON.parse(client.profile.body, symbolize_names: true).fetch(:user)
+      @user_details = auth_response.authorized_client.profile
     else
       @errors = auth_response.errors
       render :error
