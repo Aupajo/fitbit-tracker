@@ -39,4 +39,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.fitbit_oauth.merge(
+    client_id: 'client_id',
+    client_secret: 'client_secret',
+    authorization_uri: 'https://fitbit.mock/authorization_uri',
+    refresh_token_uri: 'https://fitbit.mock/refresh_uri',
+  )
 end
