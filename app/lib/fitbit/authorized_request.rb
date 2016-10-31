@@ -13,11 +13,17 @@ module Fitbit
     end
 
     def response
-      Net::HTTP.start(uri.host, uri.port, use_ssl: ssl?) do |http|
+      raw_response = Net::HTTP.start(uri.host, uri.port, use_ssl: ssl?) do |http|
         request = Net::HTTP::Get.new(uri)
         request['Authorization'] = "Bearer #{client.access_token}"
 
         http.request(request)
+      end
+
+      if raw_response.code.to_i == 200
+        raw_response
+      else
+        fail "Don't know how to handle #{raw_response.code} request with body #{raw_response.body}"
       end
     end
 

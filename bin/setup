@@ -50,6 +50,7 @@ chdir APP_ROOT do
     puts "    Use http://localhost:3000/fitbit_oauth_connections for the callback URL\n\n"
 
     config = {
+      CANONICAL_HOST: 'localhost:3000',
       FITBIT_OAUTH_CLIENT_ID: ask_for("FITBIT_OAUTH_CLIENT_ID"),
       FITBIT_OAUTH_CLIENT_SECRET: ask_for("FITBIT_OAUTH_CLIENT_SECRET"),
       FITBIT_OAUTH_AUTHORIZATION_URI: ask_for("FITBIT_OAUTH_AUTHORIZATION_URI", "https://www.fitbit.com/oauth2/authorize"),
