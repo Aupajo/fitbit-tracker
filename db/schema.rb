@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20161030061304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "fitbit_users", force: :cascade do |t|
+    t.string   "remote_id",                   null: false
+    t.string   "display_name",                null: false
+    t.string   "full_name"
+    t.jsonb    "avatars",      default: "{}", null: false
+    t.string   "timezone",                    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["remote_id"], name: "index_fitbit_users_on_remote_id", unique: true, using: :btree
+  end
 
 end

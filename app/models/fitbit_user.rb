@@ -1,0 +1,2 @@
+class FitbitUser < ApplicationRecord
+end
