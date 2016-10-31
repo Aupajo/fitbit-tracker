@@ -17,8 +17,6 @@ Bundler.require(*Rails.groups)
 
 module FitbitTracker
   class Application < Rails::Application
-    config.autoload_paths << "#{Rails.root}/lib"
-
     config.fitbit_oauth = {
       client_id: ENV['FITBIT_OAUTH_CLIENT_ID'],
       client_secret: ENV['FITBIT_OAUTH_CLIENT_SECRET'],

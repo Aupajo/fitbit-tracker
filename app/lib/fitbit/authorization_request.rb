@@ -2,10 +2,11 @@ module Fitbit
   class AuthorizationRequest
     attr_reader :authorization_code, :config
 
-    def initialize(config:, authorization_code:, local_host:)
+    def initialize(config:, authorization_code:, local_host:, local_protocol:)
       @config = config
       @authorization_code = authorization_code
       @local_host = local_host
+      @local_protocol = local_protocol
     end
 
     def response
@@ -34,7 +35,7 @@ module Fitbit
     private
 
     def redirect_uri
-      Rails.application.routes.url_helpers.fitbit_oauth_connections_url(host: @local_host)
+      Rails.application.routes.url_helpers.fitbit_oauth_connections_url(host: @local_host, protocol: @local_protocol)
     end
   end
 end

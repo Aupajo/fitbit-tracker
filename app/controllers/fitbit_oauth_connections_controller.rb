@@ -9,7 +9,8 @@ class FitbitOauthConnectionsController < ApplicationController
 
     auth_request = connection.authorization_request(
       authorization_code: params.fetch(:code),
-      local_host: request.host_with_port
+      local_host: request.host_with_port,
+      local_protocol: request.protocol
     )
 
     auth_response = auth_request.response
