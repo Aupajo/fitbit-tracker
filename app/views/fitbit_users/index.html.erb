@@ -2,7 +2,7 @@
   <tr>
     <th colspan="2"></th>
     <th>Average daily steps</th>
-    <th>Monthly steps</th>
+    <th>Last 7 days' steps</th>
     <th>Lifetime steps</th>
   </tr>
   <% @fitbit_users.group_by(&:timezone).each do |timezone, users| %>
@@ -25,7 +25,7 @@
           <%= number_with_delimiter user.readings.last.average_steps %>
         </td>
         <td>
-          <%= number_with_delimiter user.readings.last.monthly_steps %>
+          <%= number_with_delimiter user.readings.last.last_7_days_steps %>
         </td>
         <td>
           <%= number_with_delimiter user.readings.last.lifetime_steps %>
@@ -34,3 +34,5 @@
     <% end %>
   <% end %>
 </table>
+
+<p>Last updated <%= time_ago_in_words Reading.last.created_at %> ago</p>

@@ -12,7 +12,7 @@
   <tr>
     <th>Recorded at</th>
     <th>Average daily steps</th>
-    <th>Monthly steps</th>
+    <th>Last 7 days' steps</th>
     <th>Lifetime steps</th>
   </tr>
   <% @fitbit_user.readings.find_each do |reading| %>
@@ -24,7 +24,7 @@
         <%= number_with_delimiter reading.average_steps %>
       </td>
       <td>
-        <%= number_with_delimiter reading.monthly_steps %>
+        <%= number_with_delimiter reading.last_7_days_steps %>
       </td>
       <td>
         <%= number_with_delimiter reading.lifetime_steps %>

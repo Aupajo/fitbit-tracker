@@ -59,7 +59,7 @@ namespace :fitbit do
 
         reading = {
           lifetime_steps: friend_data.dig(:lifetime, :steps),
-          monthly_steps: friend_data.dig(:summary, :steps),
+          last_7_days_steps: friend_data.dig(:summary, :steps),
           average_steps: friend_data.dig(:average, :steps),
         }
 

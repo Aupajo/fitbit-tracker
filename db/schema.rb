@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031034346) do
+ActiveRecord::Schema.define(version: 20161031045744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 20161031034346) do
   create_table "readings", force: :cascade do |t|
     t.integer  "fitbit_user_id"
     t.integer  "lifetime_steps"
-    t.integer  "monthly_steps"
+    t.integer  "last_7_days_steps"
     t.integer  "average_steps"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.index ["fitbit_user_id"], name: "index_readings_on_fitbit_user_id", using: :btree
   end
 
