@@ -3,7 +3,7 @@ require 'fitbit_oauth_connection'
 class FitbitOauthConnectionsController < ApplicationController
   def new
     connection = FitbitOauthConnection.new
-    redirect_to connection.authorization_uri(host: request.host_with_port)
+    redirect_to connection.authorization_uri(host: request.host_with_port, protocol: request.protocol)
   end
 
   def confirm

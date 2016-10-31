@@ -5,13 +5,13 @@ class FitbitOauthConnection
     @config = config
   end
 
-  def authorization_uri(host:)
+  def authorization_uri(host:, protocol:)
     uri = Addressable::URI.parse(config.fetch(:authorization_uri))
 
     uri.query_values = {
       client_id: config.fetch(:client_id),
       scope: config.fetch(:scopes).join(' '),
-      redirect_uri: routes.fitbit_oauth_connections_url(host: host),
+      redirect_uri: routes.fitbit_oauth_connections_url(host: host, protocol: protocol),
       response_type: 'code'
     }
 
