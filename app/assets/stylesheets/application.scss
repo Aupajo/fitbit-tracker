@@ -1,0 +1,49 @@
+body {
+  font: 14pt/1.6em "Helvetica Neue", sans-serif;
+  margin: 2em auto;
+  width: 40em;
+}
+
+img {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+}
+
+.friends {
+  display: flex;
+  flex-direction: column;
+
+  .friend {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+
+    &:hover {
+      background: rgb(240, 251, 255);
+      cursor: pointer;
+    }
+
+    img {
+      height: 50px;
+      width: 50px;
+    }
+
+    .name {
+      flex: 1;
+      margin: 0 0.5em;
+    }
+  }
+}
+
+a, input[type="submit"] {
+  display: inline-block;
+  background: rgb(11, 176, 228);
+  color: white;
+  font-size: 1em;
+  padding: 1em 2em;
+  text-decoration: none;
+  border-radius: 0.2em;
+  border: none;
+  cursor: pointer;
+}

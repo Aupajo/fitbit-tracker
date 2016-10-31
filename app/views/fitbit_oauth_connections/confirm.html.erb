@@ -1,18 +1,36 @@
-<h1><%= @user_details[:displayName] %> (<%= @user_details[:encodedId] %>)</h1>
-<h2><%= @user_details[:fullName] %></h2>
-<p><%= @user_details[:timezone] %></p>
-<p><%= image_tag @user_details[:avatar] %></p>
-<p><%= image_tag @user_details[:avatar150] %></p>
+<%= form_for @authenticated_user do |f| %>
+  <%= f.hidden_field :access_token %>
+  <%= f.hidden_field :refresh_token %>
 
+  <%= fields_for @fitbit_user do |uf| %>
+    <%= uf.hidden_field :remote_id %>
+    <%= uf.hidden_field :display_name %>
+    <%= uf.hidden_field :full_name %>
+    <%= uf.hidden_field :timezone %>
 
-<h2>Friends</h2>
-
-<ul>
-  <% @friends.each do |friend| %>
-    <li>
-      <%= friend[:encodedId] %>
-      <%= friend[:displayName] %>
-      <%= image_tag friend[:avatar] %>
-    </li>
+    <% @fitbit_user.avatars.each do |name, value| %>
+      <%= uf.hidden_field "avatars[#{name}]", value: value %>
+    <% end %>
   <% end %>
-</ul>
+
+  <h1><%= @user_details[:displayName] %></h1>
+  <h2><%= @user_details[:fullName] %></h2>
+  <p><%= @user_details[:timezone] %></p>
+  <p><%= image_tag @user_details[:avatar] %></p>
+
+  <h2>Friends to track</h2>
+
+  <div class="friends">
+    <% @friends.each do |friend| %>
+      <label class="friend">
+        <%= f.check_box :watching, { multiple: true, checked: @authenticated_user.watching.include?(friend[:encodedId]) }, friend[:encodedId], nil %>
+        <span class="name">
+          <%= friend[:displayName] %>
+        </span>
+        <%= image_tag friend[:avatar] %>
+      </label>
+    <% end %>
+  </div>
+
+  <%= f.submit "Connect" %>
+<% end %>
