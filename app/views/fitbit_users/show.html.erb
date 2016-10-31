@@ -15,7 +15,7 @@
     <th>Last 7 days' steps</th>
     <th>Lifetime steps</th>
   </tr>
-  <% @fitbit_user.readings.find_each do |reading| %>
+  <% @fitbit_user.readings.order(id: :desc).each do |reading| %>
     <tr>
       <td>
         <%= reading.created_at %>
