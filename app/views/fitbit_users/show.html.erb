@@ -4,6 +4,8 @@
   <%= image_tag @fitbit_user.avatars['avatar'] %>
   <h1><%= @fitbit_user.display_name %></h1>
   <p><%= @fitbit_user.timezone %></p>
+
+  <p>Last synced <%= time_tag @fitbit_user.last_synced_at, "#{time_ago_in_words(@fitbit_user.last_synced_at)} ago" %>.</p>
 </div>
 
 <h2>Readings</h2>

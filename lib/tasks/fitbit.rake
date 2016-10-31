@@ -57,10 +57,18 @@ namespace :fitbit do
           friend.timezone = user_data.fetch(:timezone)
         end
 
+        last_synced_at = DateTime.parse(friend_data.fetch(:lastUpdateTime))
+
+        if last_synced_at == fitbit_user.last_synced_at
+          puts "no update"
+          next
+        end
+
         reading = {
           lifetime_steps: friend_data.dig(:lifetime, :steps),
           last_7_days_steps: friend_data.dig(:summary, :steps),
           average_steps: friend_data.dig(:average, :steps),
+          last_synced_at: last_synced_at
         }
 
         fitbit_user.readings.create!(reading)
