@@ -1,3 +1,5 @@
+require 'fitbit_oauth_connection'
+
 class FitbitOauthConnectionsController < ApplicationController
   def new
     connection = FitbitOauthConnection.new
