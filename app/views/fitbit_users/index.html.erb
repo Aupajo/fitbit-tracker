@@ -1,0 +1,27 @@
+<table>
+  <tr>
+    <th>Person</th>
+    <th>Average daily steps</th>
+    <th>Monthly steps</th>
+    <th>Lifetime steps</th>
+  </tr>
+  <% @fitbit_users.each do |user| %>
+    <tr>
+      <td>
+        <%= link_to user do %>
+          <%= image_tag user.avatars['avatar'] if user.avatars['avatar'].present? %>
+          <%= user.display_name %>
+        <% end %>
+      </td>
+      <td>
+        <%= number_with_delimiter user.readings.last.average_steps %>
+      </td>
+      <td>
+        <%= number_with_delimiter user.readings.last.monthly_steps %>
+      </td>
+      <td>
+        <%= number_with_delimiter user.readings.last.lifetime_steps %>
+      </td>
+    </tr>
+  <% end %>
+</table>

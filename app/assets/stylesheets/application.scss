@@ -4,9 +4,27 @@ body {
   width: 40em;
 }
 
+a {
+  text-decoration: none;
+}
+
 img {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
+}
+
+table {
+  th, td {
+    text-align: left;
+    vertical-align: middle;
+    padding: 0.5em;
+  }
+
+  img {
+    height: 50px;
+    width: 50px;
+    vertical-align: middle;
+  }
 }
 
 .friends {
@@ -36,7 +54,7 @@ img {
   }
 }
 
-a, input[type="submit"] {
+.button, input[type="submit"] {
   display: inline-block;
   background: rgb(11, 176, 228);
   color: white;
