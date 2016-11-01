@@ -50,12 +50,14 @@ namespace :fitbit do
           next
         end
 
-        fitbit_user = FitbitUser.find_or_create_by!(remote_id: user_data.fetch(:encodedId)) do |friend|
-          friend.display_name = user_data.fetch(:displayName)
-          friend.full_name = user_data.fetch(:fullName)
-          friend.avatars = user_data.slice(:avatar, :avatar150)
-          friend.timezone = user_data.fetch(:timezone)
-        end
+        fitbit_user = FitbitUser.find_or_initialize_by(remote_id: user_data.fetch(:encodedId))
+
+        fitbit_user.update!(
+          display_name: user_data.fetch(:displayName),
+          full_name: user_data.fetch(:fullName),
+          avatars: user_data.slice(:avatar, :avatar150),
+          timezone: user_data.fetch(:timezone)
+        )
 
         last_synced_at = DateTime.parse(friend_data.fetch(:lastUpdateTime))
 
